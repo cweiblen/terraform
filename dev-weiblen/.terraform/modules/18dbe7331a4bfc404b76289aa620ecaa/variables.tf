@@ -1,0 +1,10 @@
+variable "jenkins_subnet" {}
+variable "jenkins_ami" {}
+variable "jenkins_instance_type" {}
+variable "jenkins_zone_id" {}
+variable "jenkins_vpc_id" {}
+variable "jenkins_env" {}
+variable "jenkins_keyname" {}
+variable "common_sg" {}
+variable "vpn_sg" {}
+variable "bootstrap_profile" {}
