@@ -1,0 +1,14 @@
+variable "aws_region"            { default = "us-east-1" }
+variable "env"                   { default = "dev" }
+variable "cidr_block"            { default = "10.8.0.0/16" }
+variable "az1"                   { default = "us-east-1a" }
+variable "nat_ami"               { default = "ami-184dc970" }
+variable "nat_instance_type"     { default = "t2.nano" }
+variable "nat_keyname"           { default = "cweiblen-jobcase" }
+variable "zone_id"               { default = "Z3AFETNY19QFZZ" }
+variable "vpn_ami"               { default = "ami-60cd950a" }
+variable "vpn_instance_type"     { default = "t2.micro"}
+variable "default_keyname"       { default = "cweiblen-jobcase" }
+variable "jenkins_ami"           { default = "ami-fce3c696" }
+variable "jenkins_instance_type" { default = "t2.micro"}
+variable "bootstrap_bucket"      { default = "weiblen-invoke-terraform" }
