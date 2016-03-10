@@ -53,10 +53,15 @@ resource "aws_instance" "vpn" {
   }
 }
 
+resource "aws_eip" "vpn" {
+    instance = "${aws_instance.vpn.id}"
+    vpc = true
+}
+
 resource "aws_route53_record" "vpn" {
    zone_id = "${var.vpn_zone_id}"
    name = "vpn.weiblen.com"
    type = "A"
    ttl = "300"
-   records = ["${aws_instance.vpn.public_ip}"]
+   records = ["${aws_eip.vpn.public_ip}"]
 }
