@@ -1,6 +1,6 @@
 # IAM role and instance profile for tomcat instance to access SQS and DynamoDB
 resource "aws_iam_role" "bootstrap_role" {
-    name = "bootstrap_role"
+    name = "bootstrap_role_${var.common_env}"
     assume_role_policy = <<EOF
 {
   "Version": "2012-10-17",
@@ -19,7 +19,7 @@ EOF
 }
 
 resource "aws_iam_instance_profile" "bootstrap_profile" {
-    name = "bootstrap_profile"
+    name = "bootstrap_profile_${var.common_env}"
     roles = ["${aws_iam_role.bootstrap_role.name}"]
 }
 
@@ -31,13 +31,13 @@ resource "template_file" "policy_doc" {
 }
 
 resource "aws_iam_policy" "bootstrap_policy" {
-    name = "bootstrap_policy"
+    name = "bootstrap_policy_${var.common_env}"
     description = "policy for s3 access during server startup"
     policy = "${template_file.policy_doc.rendered}"
 }
 
 resource "aws_iam_policy_attachment" "bootstrap" {
-  name = "boostrap-attachment"
+  name = "boostrap-attachment_${var.common_env}"
   roles = ["${aws_iam_role.bootstrap_role.name}"]
   policy_arn = "${aws_iam_policy.bootstrap_policy.arn}"
 }
